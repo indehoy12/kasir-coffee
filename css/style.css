@@ -1,0 +1,971 @@
+:root {
+  --coklat-tua: #4e342e;
+  --coklat-muda: #6d4c41;
+  --coklat-cerah: #8d6e63;
+  --coklat-highlight: #a1887f;
+  --merah: #d32f2f;
+  --merah-tua: #b71c1c;
+  --abu: #f3f2ef;
+  --abu-muda: #fafafa;
+  --teks-utama: #333;
+  --teks-secondary: #555;
+}
+
+* {
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+body {
+  margin: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-family: "Segoe UI", sans-serif;
+  background-color: var(--abu);
+  color: var(--teks-utama);
+}
+
+#loginForm,
+#kasirArea {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+  margin: 0 auto;
+  transition: opacity 0.3s ease;
+}
+
+#loginForm h2,
+#kasirArea h2 {
+  font-size: 24px;
+  color: var(--coklat-tua);
+  margin-bottom: 20px;
+}
+
+#loginForm input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 2px solid var(--coklat-muda);
+  border-radius: 25px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+#loginForm input:focus {
+  border-color: var(--focus-border);
+  outline: none;
+}
+
+#loginForm button {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  width: 100%;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+#loginForm button:hover {
+  background-color: #0056b3;
+}
+
+#kasirArea {
+  display: none;
+}
+
+#kasirArea span {
+  font-weight: bold;
+  color: var(--teks-utama);
+}
+
+#kasirArea button {
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+#kasirArea button:hover {
+  background-color: var(--accent-hover);
+}
+
+#tanggal,
+#jam {
+  border-radius: 10px;
+  padding: 8px 16px;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(4px);
+  display: block;
+  margin: 10px auto;
+  text-align: center;
+  font-family: "Arial", sans-serif;
+  letter-spacing: 1px;
+}
+
+#tanggal {
+  font-size: 16px;
+  color: #6c757d;
+  background: linear-gradient(
+    90deg,
+    rgba(102, 51, 153, 0.8),
+    rgba(34, 193, 195, 0.8)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  padding: 5px 0;
+  margin-bottom: 10px;
+  transition: transform 0.3s, color 0.3s;
+}
+
+#tanggal:hover {
+  transform: scale(1.05);
+  color: var(--coklat-muda);
+}
+
+#jam {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 204, 255, 0.8),
+    rgba(102, 51, 153, 0.8)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  padding: 10px 0;
+  transition: transform 0.3s, color 0.3s;
+}
+
+#jam:hover {
+  transform: scale(1.05);
+  color: var(--coklat-highlight);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+#jam {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+#search-container {
+  text-align: center;
+  margin: 1rem auto;
+  padding: 0.5rem;
+}
+
+#searchInput {
+  width: 60%;
+  max-width: 400px;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+#searchInput:focus {
+  border-color: #6c63ff;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--coklat-tua);
+  color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+header h1:hover {
+  color: var(--coklat-cerah);
+}
+
+header img {
+  height: 50px;
+  margin-right: 1rem;
+  animation: fadeInDown 1s ease;
+}
+
+header img:hover {
+  transform: scale(1.1);
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+nav {
+  background: linear-gradient(135deg, var(--coklat-tua), var(--coklat-muda));
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+nav button {
+  padding: 0.7rem;
+  background: linear-gradient(135deg, var(--coklat-cerah), var(--coklat-muda));
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+nav button:hover {
+  background: linear-gradient(
+    135deg,
+    var(--coklat-highlight),
+    var(--coklat-cerah)
+  );
+  transform: scale(1.05);
+}
+
+nav button.active-button {
+  background: linear-gradient(
+    135deg,
+    var(--coklat-highlight),
+    var(--coklat-tua)
+  );
+  transform: translateX(10px);
+}
+
+main {
+  flex: 1;
+  padding: 2rem;
+  animation: fadeIn 0.6s ease;
+}
+
+.menu-section {
+  display: none;
+  gap: 1rem;
+  padding-bottom: 1rem;
+}
+
+.menu-section.active {
+  display: flex;
+}
+
+.menu-section.animate-slide {
+  animation: slideInLeft 0.4s ease-in-out;
+}
+
+.menu-item {
+  flex: 0 0 auto;
+  width: 190px;
+  height: 220px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 10px;
+}
+
+.menu-item:hover {
+  transform: scale(1.05);
+}
+
+.menu-item img {
+  width: 70%;
+  height: 100px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+.menu-item h4,
+.menu-item p {
+  margin: 0.4rem;
+}
+
+.menu-item button {
+  margin: 0.2rem;
+  padding: 0.3rem 0.6rem;
+  border: none;
+  background: var(--coklat-tua);
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.menu-item button:hover {
+  background: var(--coklat-muda);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+th {
+  padding: 1rem;
+  background: var(--coklat-cerah);
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+th:hover {
+  background: var(--coklat-tua);
+}
+
+td {
+  padding: 1rem;
+  text-align: center;
+  border: 1px solid #ddd;
+  transition: background-color 0.3s ease;
+}
+
+td:hover {
+  background-color: var(--coklat-cerah);
+  color: white;
+}
+
+#strukArea {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+  animation: fadeInUp 0.5s ease-in-out;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+#strukArea:hover {
+  background: var(--coklat-highlight);
+}
+
+#strukArea h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: var(--coklat-tua);
+}
+
+#strukArea p {
+  margin: 0;
+  color: var(--teks-secondary);
+}
+
+#isiStruk {
+  margin-top: 1rem;
+  background-color: var(--abu-muda);
+  padding: 1rem;
+  border-radius: 8px;
+  font-family: "Courier New", monospace;
+  white-space: pre-wrap;
+  line-height: 1.4;
+  border: 1px dashed #ccc;
+}
+
+label[for="namaPelanggan"] {
+  display: block;
+  font-weight: bold;
+  color: #333;
+  font-size: 1rem;
+}
+
+#namaPelanggan {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#namaPelanggan:focus {
+  border-color: var(--teks-secondary);
+  box-shadow: 0 0 5px var(--teks-utama);
+  outline: none;
+}
+
+h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--coklat-tua);
+  margin-top: 1.5rem;
+}
+
+input[type="number"] {
+  padding: 0.8rem;
+  font-size: 1rem;
+  width: 150px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  margin-right: 1rem;
+}
+
+input[type="number"]:focus {
+  border-color: var(--coklat-cerah);
+  box-shadow: 0 0 5px var(--coklat-cerah);
+}
+
+.pembayaran {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 250px;
+  font-family: "Arial", sans-serif;
+}
+
+.pembayaran label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: bold;
+  color: #333;
+}
+
+.pembayaran input[type="number"],
+.pembayaran input[type="text"] {
+  display: block;
+  width: 100%;
+  padding: 6px 10px;
+  margin-top: 4px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.pembayaran button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #d84315;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pembayaran button:hover {
+  background-color: #bf360c;
+}
+
+button {
+  padding: 0.8rem 1.5rem;
+  background: linear-gradient(135deg, var(--coklat-muda), var(--coklat-tua));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(
+    135deg,
+    var(--coklat-highlight),
+    var(--coklat-muda)
+  );
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: translateY(2px);
+}
+
+#riwayatModal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  width: 95%;
+  max-width: 650px;
+  max-height: 80%;
+  overflow-y: auto;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease;
+}
+.modal-content h2 {
+  margin-top: 0;
+}
+
+.modal-content button {
+  background: var(--merah);
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+  margin-top: 1rem;
+}
+#cariRiwayat {
+  padding: 8px;
+  margin-bottom: 20px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+#tabelRiwayat {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#tabelRiwayat th,
+#tabelRiwayat td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+#tabelRiwayat td {
+  word-wrap: break-word;
+  max-width: 150px;
+  overflow: hidden;
+}
+
+.modal-content button:hover {
+  background: var(--merah-tua);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.menu-section::-webkit-scrollbar {
+  height: 6px;
+}
+.menu-section::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+#laporanBulananModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+#laporanBulananModal > div {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 800px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#laporanBulananModal h2 {
+  color: #333;
+  text-align: center;
+}
+
+#laporanBulananModal table {
+  width: 100%;
+  margin: 20px 0;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#laporanBulananModal th,
+#laporanBulananModal td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+#laporanBulananModal tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#laporanBulananModal tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+#laporanBulananModal button {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#laporanBulananModal button:hover {
+  background-color: #d32f2f;
+}
+
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+  }
+
+  nav {
+    width: 250px;
+  }
+
+  #laporanBulananModal > div {
+    width: 90%;
+    padding: 15px;
+  }
+
+  table th,
+  table td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  button {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .menu-section {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+
+  .menu-item {
+    flex-shrink: 1;
+  }
+
+  .product-image,
+  .product-card p,
+  .product-card {
+    display: none !important;
+  }
+
+  #loginForm,
+  #kasirArea {
+    width: 100%;
+    padding-top: 10px;
+  }
+
+  #loginForm h2,
+  #kasirArea h2 {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 1.2rem;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+
+  .menu-section {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 1rem;
+    scroll-behavior: smooth;
+  }
+
+  .menu-item {
+    width: 45%;
+    height: auto;
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+  }
+
+  .menu-item img {
+    height: 120px;
+    object-fit: cover;
+    width: 65%;
+  }
+
+  .menu-item h4,
+  .menu-item p {
+    font-size: 0.9rem;
+  }
+
+  .menu-item button {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  nav {
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  nav button {
+    flex: 1 0 auto;
+    white-space: nowrap;
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+    margin-right: 8px;
+  }
+
+  #loginForm,
+  #kasirArea {
+    width: 100%;
+    padding-top: 10px;
+  }
+
+  #loginForm h2,
+  #kasirArea h2 {
+    font-size: 30px;
+  }
+
+  #strukArea {
+    font-size: 0.85rem;
+  }
+
+  .modal-content {
+    width: 95%;
+  }
+
+  .product-image,
+  .product-card p,
+  .product-card {
+    display: none !important;
+  }
+
+  main {
+    padding: 1rem;
+  }
+
+  header img {
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  #loginForm,
+  #kasirArea {
+    width: 100%;
+    padding-top: 10px;
+  }
+
+  #loginForm h2,
+  #kasirArea h2 {
+    font-size: 30px;
+  }
+
+  .product-image,
+  .product-card p,
+  .product-card {
+    display: none !important;
+  }
+
+  table th,
+  table td {
+    font-size: 12px;
+  }
+
+  #laporanBulananModal > div {
+    width: 95%;
+  }
+
+  button {
+    padding: 12px;
+  }
+
+  .menu-item {
+    width: 50%;
+    height: auto;
+  }
+
+  .menu-item img {
+    height: 120px;
+    object-fit: cover;
+  }
+
+  .menu-item h4,
+  .menu-item p {
+    font-size: 0.85rem;
+  }
+
+  .menu-item button {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  nav {
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  nav button {
+    flex: 1 0 auto;
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+  }
+
+  header h1 {
+    font-size: 1.2rem;
+  }
+
+  header img {
+    height: 40px;
+  }
+
+  main {
+    padding: 1rem;
+  }
+  #searchInput {
+    width: 90%;
+  }
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #strukArea,
+  #strukArea * {
+    visibility: visible;
+  }
+
+  #strukArea {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 58mm;
+    padding: 5mm;
+    font-size: 8.5px;
+    font-family: monospace;
+    background: white;
+  }
+
+  .btn,
+  nav,
+  .pesanan,
+  .riwayat {
+    display: none !important;
+  }
+
+  #strukArea button {
+    display: none;
+  }
+
+  @page {
+    size: 80mm 200mm;
+    margin: 0;
+  }
+}

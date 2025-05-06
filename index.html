@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KATA-COFFE Kasir</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <img src="images/logo-2.jpg" alt="Logo KATA-COFFE" />
+      <h1>KATA-COFFE - Sistem Kasir</h1>
+    </header>
+    <div class="container">
+      <div id="loginForm">
+        <h2><i class="fa-solid fa-right-to-bracket"></i> Login Kasir</h2>
+        <input type="text" id="kasirName" placeholder="Masukkan nama kasir" />
+        <button onclick="loginKasir()">
+          <i class="fa-solid fa-lock"></i> Login
+        </button>
+      </div>
+
+      <div id="kasirArea" class="hidden">
+        <h2>
+          <i class="fa-solid fa-user"></i> Selamat datang,
+          <span id="kasirDisplay"></span>!
+        </h2>
+        <button onclick="logoutKasir()">
+          <i class="fa-solid fa-door-open"></i> Logout
+        </button>
+
+        <div id="tanggal">
+          <i class="fa-solid fa-calendar-days"></i> <span></span>
+        </div>
+        <div id="jam"><i class="fa-solid fa-clock"></i> <span></span></div>
+
+        <div id="search-container">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Cari menu..."
+            oninput="searchMenu()"
+          />
+        </div>
+      </div>
+
+      <nav>
+        <button onclick="showMenu('coffee')">
+          <i class="fa-solid fa-mug-hot"></i> Coffee Series
+        </button>
+        <button onclick="showMenu('non')">
+          <i class="fa-solid fa-glass-water"></i> Non Coffee Series
+        </button>
+        <button onclick="showMenu('snack')">
+          <i class="fa-solid fa-cookie-bite"></i> Snack Series
+        </button>
+        <button onclick="showMenu('food')">
+          <i class="fa-solid fa-bowl-rice"></i> Food Series
+        </button>
+      </nav>
+      <main>
+        <div id="menus">
+          <div id="coffee" class="menu-section active"></div>
+          <div id="non" class="menu-section"></div>
+          <div id="snack" class="menu-section"></div>
+          <div id="food" class="menu-section"></div>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Menu</th>
+              <th>Jumlah</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody id="orderList"></tbody>
+        </table>
+        <h2>
+          <i class="fa-solid fa-money-bill-wave"></i> Total: Rp
+          <span id="total">0</span>
+        </h2>
+
+        <div class="pembayaran">
+          <label for="namaPelanggan">
+            <i class="fa-solid fa-user-tag"></i> Nama Pelanggan:
+          </label>
+          <input
+            type="text"
+            id="namaPelanggan"
+            placeholder="Masukkan nama pelanggan"
+          />
+
+          <label>
+            <i class="fa-solid fa-hand-holding-dollar"></i> Bayar: Rp
+            <input type="number" id="bayarInput" oninput="prosesPembayaran()" />
+          </label>
+
+          <label for="kembalian">
+            <i class="fa-solid fa-money-bill-transfer"></i> Kembalian:
+            <input type="text" id="kembalian" readonly />
+          </label>
+          <button onclick="resetTransaksi()" style="margin: 10px">
+            <i class="fa-solid fa-rotate-left"></i> Reset
+          </button>
+        </div>
+
+        <div id="strukArea" style="display: none">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          ></div>
+          <div id="isiStruk"></div>
+          <button id="btnCetak" onclick="cetakStruk()">
+            <i class="fa-solid fa-print"></i> Cetak Struk
+          </button>
+        </div>
+        <button onclick="tampilkanRiwayat()" style="margin-top: 10px">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          Lihat Riwayat
+        </button>
+
+        <div id="riwayatModal">
+          <div class="modal-content">
+            <h2><i class="fa-solid fa-book"></i> Riwayat Transaksi</h2>
+            <label for="cariRiwayat">
+              <i class="fa-solid fa-magnifying-glass"></i> Cari berdasarkan ID
+              Transaksi:
+            </label>
+            <input
+              type="text"
+              id="cariRiwayat"
+              placeholder="Contoh: TRXKC0001"
+            />
+            <button onclick="filterRiwayat()">
+              <i class="fa-solid fa-magnifying-glass"></i> Cari
+            </button>
+            <button onclick="tutupRiwayat()">
+              <i class="fa-solid fa-xmark"></i> Close
+            </button>
+            <table id="tabelRiwayat">
+              <thead>
+                <tr>
+                  <th>ID Transaksi</th>
+                  <th>Tanggal</th>
+                  <th>Menu & Jumlah</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <button onclick="hapusRiwayat()" style="margin-top: 10px">
+          <i class="fa-solid fa-trash-can"></i> Hapus Riwayat
+        </button>
+        <button onclick="laporanBulanan()" style="margin-top: 10px">
+          Lihat Laporan Bulanan
+        </button>
+        <div id="laporanBulananModal" style="display: none">
+          <h2>Laporan Bulanan</h2>
+          <table id="tabelLaporanBulanan">
+            <thead>
+              <tr>
+                <th>Keterngan</th>
+                <th>Total Pendapatan</th>
+                <th>Detail Transaksi</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <button onclick="tutupLaporanBulanan()">Tutup</button>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
