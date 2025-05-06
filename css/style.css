@@ -760,6 +760,9 @@ button:active {
   #strukArea {
     font-size: 8.5px;
   }
+  #isiStruk {
+    padding: 10px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -856,6 +859,9 @@ button:active {
   #strukArea {
     font-size: 8.5px;
   }
+  #isiStruk {
+    padding: 10px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -938,6 +944,9 @@ button:active {
   }
   #strukArea {
     font-size: 8.5px;
+  }
+  #isiStruk {
+    padding: 10px;
   }
 }
 

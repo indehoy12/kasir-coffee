@@ -59,8 +59,6 @@ function updateDateTime() {
     }, 300);
 
     toggleTransaksi(true);
-    document.getElementById("tombolRiwayat").disabled = false;
-    document.getElementById("btnHapusRiwayat").disabled = false;
   }
 
   function logoutKasir() {
