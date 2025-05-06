@@ -757,6 +757,9 @@ button:active {
   #kasirArea h2 {
     font-size: 30px;
   }
+  #strukArea {
+    font-size: 8.5px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -850,6 +853,9 @@ button:active {
   header img {
     height: 40px;
   }
+  #strukArea {
+    font-size: 8.5px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -930,6 +936,9 @@ button:active {
   #searchInput {
     width: 90%;
   }
+  #strukArea {
+    font-size: 8.5px;
+  }
 }
 
 @media print {
@@ -948,7 +957,7 @@ button:active {
     top: 0;
     width: 58mm;
     padding: 5mm;
-    font-size: 8px;
+    font-size: 8.5px;
     font-family: monospace;
     background: white;
   }
